@@ -362,6 +362,7 @@ ssh root@<server-ip> "pm2 restart pause --update-env"
 
 ## Team
 
+Nikki Kothapalli, Pallavi Perumalla, Mansi Patel, Jasmitha Madasu
 Built in 24 hours at HackTX 2026.
 
 ## License
