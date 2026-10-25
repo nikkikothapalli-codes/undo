@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f1e8" />
+  <title>Undo · Scams run on urgency</title>
+  <meta name="description" content="Undo puts a cooling-off period between seniors and scammers. Big payments wait in a Solana vault, an AI explains the red flags, and family can cancel with one tap." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500;12..96,75..100,700;12..96,75..100,800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+  <style>
+    .pw { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    .p-hero { min-height: calc(100svh - 60px); display: grid; align-content: center; gap: 26px; padding: 40px 0 70px; }
+    .p-hero h1 { font-size: clamp(52px, 10.5vw, 136px); line-height: .88; letter-spacing: -0.055em; }
+    .p-hero h1 em { font-style: normal; color: var(--lock); }
+    .p-hero .sub { font-size: clamp(18px, 2vw, 22px); max-width: 40ch; margin: 0; }
+    .sec { padding: 110px 0; border-top: 1px solid var(--line); }
+    .sec h2 { font-size: clamp(34px, 5.4vw, 64px); line-height: .98; letter-spacing: -0.04em; max-width: 17ch; }
+    .tag { display: block; font: 600 12.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--lock); margin-bottom: 18px; }
+    .lead { font-size: 19px; color: var(--ink-2); max-width: 52ch; margin: 18px 0 0; }
+    .nums { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 14px; margin-top: 44px; }
+    .num { padding: 26px; border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); box-shadow: var(--lift); }
+    .num b { display: block; font: 800 clamp(48px, 7vw, 92px)/.9 var(--display); letter-spacing: -0.05em; }
+    .num:first-child b { color: var(--red); }
+    .num span { display: block; margin-top: 12px; color: var(--ink-2); font-size: 16px; }
+    .src { font: 500 12px var(--mono); color: var(--ink-3); margin-top: 14px; display: block; }
+    .phone { max-width: 420px; padding: 22px; border-radius: 36px; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(60, 45, 20, .45); }
+    .phone .who { text-align: center; font: 600 13px var(--sans); color: var(--ink-3); margin-bottom: 14px; }
+    .bub { padding: 12px 16px; border-radius: 20px 20px 20px 6px; background: #e9e9eb; font: 400 17px/1.4 -apple-system, "SF Pro Text", var(--sans); margin-bottom: 8px; }
+    .bub mark { background: #ffd9d2; color: #8f241b; border-radius: 4px; padding: 0 3px; }
+    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 40px; }
+    .story ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; counter-reset: s; }
+    .story li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; font-size: 18px; color: var(--ink-2); }
+    .story li::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--ink); color: var(--paper); font: 700 16px var(--mono); }
+    .story li b { display: block; color: var(--ink); font: 700 21px/1.2 var(--display); margin-bottom: 2px; }
+    .wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+    .w { position: relative; padding: 24px; border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); box-shadow: var(--lift); overflow: hidden; }
+    .w h3 { font-size: 21px; margin: 46px 0 8px; }
+    .w p { margin: 0; color: var(--ink-2); font-size: 15px; }
+    .w code { display: block; margin-top: 14px; font: 500 12px var(--mono); color: var(--ink-3); }
+    .w .stamp { position: absolute; top: 18px; left: 20px; font-size: 12px; padding: 5px 9px; }
+    .w.green .stamp { color: var(--paid); border-color: var(--paid); box-shadow: none; }
+    .proof { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; margin-top: 44px; align-items: start; }
+    .spons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+    .sp { padding: 26px; border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); box-shadow: var(--lift); }
+    .sp h3 { font-size: 26px; margin: 16px 0 8px; }
+    .sp p { margin: 0; color: var(--ink-2); }
+    .end { text-align: center; padding: 140px 0 160px; }
+    .end h2 { margin: 0 auto 30px; max-width: 14ch; font-size: clamp(42px, 7vw, 92px); line-height: .92; letter-spacing: -0.05em; }
+    .rv { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
+    .rv.in { opacity: 1; transform: none; }
+    .w .stamp { opacity: 0; }
+    .wall.in .w .stamp { animation: stamp .45s cubic-bezier(.2, 1.6, .4, 1) both; opacity: 1; }
+    .wall.in .w:nth-child(2) .stamp { animation-delay: .25s; } .wall.in .w:nth-child(3) .stamp { animation-delay: .5s; }
+    .wall.in .w:nth-child(4) .stamp { animation-delay: .75s; } .wall.in .w:nth-child(5) .stamp { animation-delay: 1s; } .wall.in .w:nth-child(6) .stamp { animation-delay: 1.25s; }
+    @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .w .stamp { opacity: 1; animation: none !important; } }
+    @media (max-width: 860px) { .nums, .story, .wall, .proof, .spons { grid-template-columns: 1fr; } .sec { padding: 72px 0; } }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="top">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg></span>Undo</a>
+    <span class="net"><i></i>HackTX 2026</span>
+    <a class="btn violet sm" href="/" style="margin-left:auto">Open the app</a>
+  </header>
+
+  <div class="pw">
+    <section class="p-hero">
+      <span class="tag">For grandparents, and the people who love them</span>
+      <h1>Scams run on urgency.<br><em>Undo</em> takes it away.</h1>
+      <p class="sub">Big payments wait in a vault on Solana. An AI explains the red flags in plain English. Family gets a text and can cancel with one tap.</p>
+      <div class="hero-actions"><a class="btn violet lg" href="/">Try the live demo</a><a class="btn lg" href="#how">How it works</a></div>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">The problem</span>
+      <h2>Older Americans lost billions last year. Most of it never came back.</h2>
+      <div class="nums">
+        <div class="num"><b>$4.9B</b><span>lost to fraud by people 60 and over in 2024</span></div>
+        <div class="num"><b>+43%</b><span>in one year</span></div>
+        <div class="num"><b>$83K</b><span>average loss per victim, often a whole retirement</span></div>
+      </div>
+      <span class="src">FBI IC3 2024 Elder Fraud Report, via AARP · 147,000+ complaints, the most of any age group</span>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">Every scam works the same way</span>
+      <h2>Urgency, plus money that can't come back.</h2>
+      <div class="story">
+        <div class="phone">
+          <div class="who">Unknown number</div>
+          <div class="bub"><mark>Grandma its Jake</mark>, I lost my phone so this is my <mark>new number</mark>.</div>
+          <div class="bub">I got in a car accident and I'm <mark>in jail</mark>. I need $2,000 for bail <mark>right now</mark>.</div>
+          <div class="bub"><mark>Please don't tell mom.</mark> You can pay with <mark>gift cards</mark> from Target.</div>
+        </div>
+        <ol>
+          <li><div><b>The pressure is the weapon.</b>Scammers need you to act before you can think or call anyone.</div></li>
+          <li><div><b>Secrecy cuts out help.</b>"Don't tell mom" keeps the one person who'd spot it out of the loop.</div></li>
+          <li><div><b>Then it's gone.</b>Gift cards, wires and crypto can't be pulled back. Banks rarely refund them.</div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec rv" id="how">
+      <span class="tag">How Undo works</span>
+      <h2>A cooling-off period between Grandma and the scammer.</h2>
+      <div class="story">
+        <ol>
+          <li><div><b>The money waits.</b>A big payment goes into a vault on Solana for 24 hours instead of leaving right away.</div></li>
+          <li><div><b>The AI explains it.</b>Undo reads the message that asked for money, finds the red flags, and tells her in plain, kind words.</div></li>
+          <li><div><b>Family gets a text.</b>One tap cancels it and the money goes straight back to her. If it's really Jake, one tap approves it.</div></li>
+        </ol>
+        <div class="phone">
+          <div class="who">Text to Maya</div>
+          <div class="bub">Undo: Rose is trying to send $2,000 to "Jake (new number)". 6 scam red flags (high risk). It's held for 24 hours. Review or cancel: pause.app/t/85qt2d</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">Nobody can rush it</span>
+      <h2>Not the scammer. Not even Grandma under pressure.</h2>
+      <p class="lead">The hold isn't a setting in our database that someone can talk their way past. It's a rule in our Solana program, and the program refuses anything else. In the live demo, each of these is a real transaction that gets rejected on-chain.</p>
+      <div class="wall">
+        <div class="w"><span class="stamp">REJECTED</span><h3>The scammer grabs the money</h3><p>Only Grandma (after the hold) or her family can release it.</p><code>MissingRequiredSignature</code></div>
+        <div class="w"><span class="stamp">REJECTED</span><h3>Grandma is pressured to send it now</h3><p>Even her own signature can't release it before the hold ends.</p><code>pause: hold not over</code></div>
+        <div class="w"><span class="stamp">REJECTED</span><h3>Someone redirects the money</h3><p>It can only go to the original payee or back to her.</p><code>InvalidArgument</code></div>
+        <div class="w green"><span class="stamp">ALWAYS WORKS</span><h3>Cancel, any time</h3><p>Grandma or family can cancel instantly, and the money goes back to her wallet.</p><code>cancel → senior</code></div>
+        <div class="w"><span class="stamp">BLOCKED</span><h3>A message that tries to trick the AI</h3><p>Hidden characters are stripped and instructions aimed at the AI become a red flag. The AI can raise the alarm, never lower it.</p><code>injection guard</code></div>
+        <div class="w green"><span class="stamp">14 TESTS</span><h3>Every rule is tested</h3><p>Rush, grab, redirect, double-spend, fake-vault and cancel cases run against the program.</p><code>cargo test · 14 passed</code></div>
+      </div>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">Every decision leaves a receipt</span>
+      <h2>You can see exactly what Undo checked, and prove it.</h2>
+      <div class="proof">
+        <div class="panel">
+          <div class="pipe-head"><span>What Undo checked</span><span class="prov vultr">Vultr Inference</span></div>
+          <ol class="pipe">
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Read the message that asked for money</b><small>195 characters · 0 hidden characters removed</small></span><span class="pipe-ms">2 ms</span></li>
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Check for tricks aimed at the AI</b><small>message treated as untrusted data</small></span><span class="pipe-ms">1 ms</span></li>
+            <li class="pipe-step warn"><span class="pipe-ic">!</span><span class="pipe-body"><b>Scan for known scam patterns</b><small>6 red flags · risk 100/100</small></span><span class="pipe-ms">3 ms</span></li>
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Check scam reports in Snowflake</b><small>"Grandchild in trouble": 102 reports in 30 days</small></span><span class="pipe-ms">240 ms</span></li>
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Explain it in plain English</b><small>written on Vultr Serverless Inference</small></span><span class="pipe-ms">1.1 s</span></li>
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Hold the money in a Solana vault</b><small>held for 24 hours</small></span><span class="pipe-ms">700 ms</span></li>
+            <li class="pipe-step done"><span class="pipe-ic">✓</span><span class="pipe-body"><b>Text Maya</b><small>sent via Twilio</small></span><span class="pipe-ms">300 ms</span></li>
+          </ol>
+        </div>
+        <div style="display:grid;gap:16px">
+          <div class="receipt"><div><span class="eyebrow">Decision receipt. Its SHA-256 is written into the Solana transaction that cancelled the money.</span><code>37124d4a7f59c7d14778d9cd1bf77f4f1011e3b726bf5441722d39879f6938f3</code></div><div class="receipt-out ok">Match. The recomputed hash equals the memo on Solana.</div></div>
+          <p class="lead" style="margin:0">Anyone can recompute the hash from what Undo saw and decided, and check it against the memo on-chain. Nothing about a cancelled scam can be quietly changed later.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">Built on</span>
+      <h2>Three sponsors, three real jobs.</h2>
+      <div class="spons">
+        <div class="sp"><span class="prov solana">Solana</span><h3>Holds the money</h3><p>A custom Rust program on devnet. Each payment gets its own vault, and only the program's rules can move it: to the payee after the hold or with family approval, or back to Grandma any time.</p></div>
+        <div class="sp"><span class="prov vultr">Vultr</span><h3>Runs the scam check</h3><p>The app runs on a Vultr cloud server, and the plain-English explanation is written by a model on Vultr Serverless Inference.</p></div>
+        <div class="sp"><span class="prov snowflake">Snowflake</span><h3>Knows the scripts</h3><p>Scam reports and every Undo outcome live in Snowflake, so Undo can say "this exact script was reported 102 times this month" and track how much it has saved.</p></div>
+      </div>
+    </section>
+
+    <section class="sec rv">
+      <span class="tag">What's next</span>
+      <h2>Today, a vault. Tomorrow, every way money leaves.</h2>
+      <p class="lead">Bank and Zelle rails through partner banks, a trusted-contact registry families can share, voice-call scam detection, and a Snowflake data share with consumer-protection agencies so new scripts get flagged faster.</p>
+    </section>
+
+    <section class="end rv">
+      <h2>Give her time to say no.</h2>
+      <a class="btn violet lg" href="/">Open the live demo</a>
+    </section>
+  </div>
+  <script>
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); e.target.querySelector('.wall')?.classList.add('in'); } }), { threshold: 0.15 });
+    document.querySelectorAll('.rv').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

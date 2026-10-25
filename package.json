@@ -1,0 +1,19 @@
+{
+  "name": "undo",
+  "version": "1.0.0",
+  "description": "A cooling-off vault between seniors and scammers. Solana holds the money, Vultr explains the scam, Snowflake knows the scripts, Twilio texts the family.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "DEADLOCK_MOCK=1 node server.js",
+    "test:program": "cd program && cargo test --release"
+  },
+  "dependencies": {
+    "@solana/web3.js": "1.99.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "snowflake-sdk": "^2.1.0"
+  }
+}

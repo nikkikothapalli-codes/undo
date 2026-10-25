@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>undo.</title>
+  <meta name="description" content="Large payments wait before they leave. If something looks like a scam, Undo explains why and your family can stop it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <a class="acct" href="#/"><img class="logo" src="logo.png" alt="undo." /><small id="acctName">Signed in</small></a>
+      <span class="net">Solana devnet</span>
+      <div class="role" role="group" aria-label="Viewing as">
+        <button data-role="senior">Rose</button>
+        <button data-role="family">Family</button>
+      </div>
+    </div>
+    <nav class="tabs" id="nav" aria-label="Main"></nav>
+  </header>
+  <div class="shell"><main id="view" class="view"></main></div>
+  <footer class="foot" id="status"></footer>
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

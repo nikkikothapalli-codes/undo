@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undo setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+  <style>
+    .wrap { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 32px 16px 80px; }
+    .item { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .item b { display: block; }
+    .item code { word-break: break-all; }
+    .item > div { min-width: 0; overflow-wrap: anywhere; }
+    pre { overflow-wrap: anywhere; }
+    .item:last-child { border-bottom: 0; }
+    .ok, .no { flex: none; width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; font: 700 13px var(--mono); } .ok { background: var(--paid); color: #04130c; } .no { background: var(--red); color: #fff; }
+    code, pre { font-family: var(--mono); font-size: 12.5px; }
+    pre { white-space: pre-wrap; word-break: break-all; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; color: var(--ink); }
+    .wrap .panel a { color: var(--lock); } h2 { margin-bottom: 8px; } ol { color: var(--ink-2); } ol b, ol code { color: var(--ink); }
+    ol { padding-left: 20px; } li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 3.2"/><rect x="11" y="14" width="10" height="8" rx="2" fill="currentColor"/><path d="M13 14v-2.5a3 3 0 0 1 6 0V14" fill="none" stroke="currentColor" stroke-width="2"/></svg>Undo</a>
+    <h1 style="margin:22px 0 6px">Setup checklist</h1>
+    <p class="sub">What's connected on this server. Refresh after each change.</p>
+    <div class="panel" id="list" style="margin-top:18px"><span class="spin"></span></div>
+    <div class="panel" style="margin-top:16px">
+      <h2>Connect Snowflake</h2>
+      <ol>
+        <li>In Snowflake, open <b>Projects → Worksheets</b> and make a new SQL worksheet.</li>
+        <li>Paste this line, replacing the name with your Snowflake username if it's wrong, and press Run:
+          <pre id="sql">loading…</pre></li>
+        <li>On the server, add these two lines to <code>/root/pause/.env</code>:
+          <pre>SNOWFLAKE_ACCOUNT=your-account-identifier
+SNOWFLAKE_USER=your-username</pre>
+          The account identifier is under your name (bottom left) → <b>Account → Copy account identifier</b>. It looks like <code>ABCDEFG-XY12345</code>.</li>
+        <li>Run <code>pm2 restart pause --update-env</code> and refresh this page.</li>
+      </ol>
+    </div>
+  </div>
+  <script>
+    const row = (ok, title, detail) => `<div class="item"><span class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✕'}</span><div><b>${title}</b><div class="deadline">${detail}</div></div></div>`;
+    Promise.all([fetch('/api/status').then((r) => r.json()), fetch('/api/setup').then((r) => r.json())]).then(([s, st]) => {
+      const w = s.wallets || {};
+      document.getElementById('sql').textContent = st.snowflakeSql;
+      document.getElementById('list').innerHTML = [
+        row(s.program.deployed, 'Vault program on Solana devnet', s.program.deployed ? `<a href="${s.program.url}" target="_blank">${s.program.id}</a>` : (s.program.reason || 'not deployed')),
+        row((w.senior?.sol || 0) >= 0.3, "Grandma's demo wallet has devnet SOL", `${w.senior?.sol ?? '?'} SOL · <code>${w.senior?.address}</code> · top up at <a href="https://faucet.solana.com" target="_blank">faucet.solana.com</a>`),
+        row((w.family?.sol || 0) >= 0.005, 'Family wallet can pay fees', `${w.family?.sol ?? '?'} SOL · <code>${w.family?.address}</code>`),
+        row((w.payee?.sol || 0) >= 0.005 && (w.attacker?.sol || 0) >= 0.005, 'Scammer + attacker wallets can pay fees (attack demo)', `${w.payee?.sol ?? '?'} / ${w.attacker?.sol ?? '?'} SOL`),
+        row(s.ai.ok, 'AI scam check', s.ai.ok ? `${s.ai.provider} · ${s.ai.model}` : `${s.ai.error}. Add VULTR_INFERENCE_KEY to .env`),
+        row(s.snowflake.ok, 'Snowflake scam intel', s.snowflake.ok ? 'connected · PAUSE.PUBLIC.SCAM_REPORTS + PAUSE_OUTCOMES' : s.snowflake.error),
+        row(s.sms?.configured, 'Family text messages (Twilio)', s.sms?.configured ? 'texts go to FAMILY_PHONE' : 'simulated in the app. Add TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM, FAMILY_PHONE to .env'),
+      ].join('') + `<p class="deadline" style="margin:10px 0 0">build ${s.build}</p>`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[package]
+name = "pause_vault"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.79"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "=2.2.1"
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
